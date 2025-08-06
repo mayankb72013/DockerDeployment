@@ -34,7 +34,7 @@ jobs:
              username: ubuntu
              key: ${{ secrets.SSH_PRIVATE_KEY_AWS }}
              script: |
-                docker pull sllik78/todo-app-backend:${{ github.sha }}
-                docker stop user_backend || true
-                docker rm user_backend || true
-                docker run -d --name user_backend -p 8080:8080 sllik78/todo-app-backend:${{ github.sha }}
+                sudo docker pull sllik78/todo-app-backend:${{ github.sha }}
+                sudo docker stop user_backend || true
+                sudo docker rm user_backend || true
+                sudo docker run -d --name user_backend -p 8080:8080 sllik78/todo-app-backend:${{ github.sha }}
