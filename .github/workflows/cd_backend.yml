@@ -27,5 +27,5 @@ jobs:
              push: true
              tags: sllik78/todo-app-backend:${{ github.sha }}
 
-         - name: Deploy to the VM
-           run: 
+         # - name: Deploy to the VM
+         #   run: 
