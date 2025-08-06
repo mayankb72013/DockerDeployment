@@ -27,5 +27,14 @@ jobs:
              push: true
              tags: sllik78/todo-app-backend:${{ github.sha }}
 
-         # - name: Deploy to the VM
-         #   run: 
+         - name: Deploy to the VM via SSH
+           uses: appleboy/ssh-action@v1.0.0
+           with: 
+             host: ${{ secrets.VM_IP }}
+             username: ubuntu
+             key: ${{ secrets.SSH_PRIVATE_KEY_AWS }}
+             script: |
+                docker pull sllik78/todo-app-backend:${{ github.sha }}
+                docker stop user_backend || true
+                docker rm user_backend || true
+                docker run -d --name user_backend -p 8080:8080 sllik78/todo-app-backend:${{ github.sha }}
